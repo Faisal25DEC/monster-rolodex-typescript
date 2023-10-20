@@ -1,3 +1,4 @@
+import { ChangeEventHandler } from "react";
 import "./search-box.styles.css";
 
 //we never want to use any
@@ -14,25 +15,53 @@ const func: (a: string, b: number, c: boolean) => boolean = (a, b, c) => {
 
 //interface
 
-interface ISearchBoxProps extends IChangeHandlerProps {
-  className: string;
-  placeholder: string;
-}
+// interface ISearchBoxProps extends IChangeHandlerProps {
+//   className: string;
+//   placeholder?: string;
+// }
 
-interface IChangeHandlerProps {
-  onChangeHandler: (a: string) => void;
-}
+// interface IChangeHandlerProps {
+//   onChangeHandler: (a: string) => void;
+// }
+type SearchBoxProps = {
+  className: string;
+  placeholder?: string;
+  onChangeHandler: ChangeEventHandler<HTMLInputElement>;
+};
+
+// type CanadianAddress = {
+//   street: string;
+//   province: string;
+// };
+
+// type USAddress = {
+//   street: string;
+//   state: string;
+// };
+
+// type ItalianAddress = {
+//   street: string;
+//   region: string;
+// };
+
+// type Address = CanadianAddress | USAddress | ItalianAddress;
+
+// const Address: Address = {
+//   street: "",
+//   state: "",
+//   province: "",
+// };
 
 const SearchBox = ({
   className,
   placeholder,
   onChangeHandler,
-}: ISearchBoxProps) => (
+}: SearchBoxProps) => (
   <input
     className={`search-box ${className}`}
     type="search"
     placeholder={placeholder}
-    onChange={(e) => onChangeHandler(e.target.value)}
+    onChange={onChangeHandler}
   />
 );
 
